@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <rect width="512" height="512" rx="64" fill="#111827"/>
+  <g transform="translate(85, 85)">
+    <!-- Shield outline -->
+    <path d="M171 43L171 43C171 43 235 64 235 128C235 192 171 277 171 277C171 277 107 192 107 128C107 64 171 43 171 43Z" 
+          fill="none" stroke="#059669" stroke-width="8"/>
+    <!-- Lock symbol -->
+    <rect x="139" y="139" width="64" height="53" rx="5" fill="#059669"/>
+    <path d="M149 139V117C149 106 158 96 171 96C184 96 192 106 192 117V139" 
+          fill="none" stroke="#059669" stroke-width="8"/>
+    <!-- Document lines -->
+    <line x1="128" y1="224" x2="213" y2="224" stroke="#10b981" stroke-width="5"/>
+    <line x1="128" y1="245" x2="192" y2="245" stroke="#10b981" stroke-width="5"/>
+    <line x1="128" y1="267" x2="203" y2="267" stroke="#10b981" stroke-width="5"/>
+  </g>
+</svg>
