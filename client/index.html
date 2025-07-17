@@ -23,12 +23,69 @@
     <link rel="icon" type="image/svg+xml" href="/icons/icon-192x192.svg">
     <link rel="shortcut icon" href="/icons/icon-192x192.svg">
     
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://clear-keep.vercel.app/">
+    <meta property="og:title" content="ClearKeep - Business Tracker">
+    <meta property="og:description" content="Track your hustle, find your peace. A privacy-first business tracker for independent professionals and small business owners.">
+    <meta property="og:image" content="/icons/icon-512x512.svg">
+    
+    <!-- Twitter Card -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://clear-keep.vercel.app/">
+    <meta property="twitter:title" content="ClearKeep - Business Tracker">
+    <meta property="twitter:description" content="Track your hustle, find your peace. A privacy-first business tracker for independent professionals and small business owners.">
+    <meta property="twitter:image" content="/icons/icon-512x512.svg">
+    
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/src/main.tsx" as="script">
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- Loading fallback -->
+      <div style="display: flex; items-center: justify-center; min-height: 100vh; background: #111827; color: #059669; font-family: Inter, sans-serif;">
+        <div style="text-align: center;">
+          <div style="font-size: 24px; font-weight: 600; margin-bottom: 8px;">ClearKeep</div>
+          <div style="font-size: 14px; opacity: 0.8;">Loading your business tracker...</div>
+        </div>
+      </div>
+    </div>
+    
     <script type="module" src="/src/main.tsx"></script>
-    <!-- This is a replit script which adds a banner on the top of the page when opened in development mode outside the replit environment -->
-    <script type="text/javascript" src="https://replit.com/public/js/replit-dev-banner.js"></script>
+    
+    <!-- PWA Service Worker -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then((registration) => {
+              console.log('ClearKeep: Service Worker registered successfully');
+            })
+            .catch((error) => {
+              console.log('ClearKeep: Service Worker registration failed:', error);
+            });
+        });
+      }
+    </script>
+    
+    <!-- PWA Install Prompt -->
+    <script>
+      let deferredPrompt;
+      
+      window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        // Show install button in app if needed
+        window.dispatchEvent(new CustomEvent('pwa-install-available'));
+      });
+      
+      window.addEventListener('appinstalled', () => {
+        console.log('ClearKeep: PWA was installed');
+        deferredPrompt = null;
+      });
+    </script>
   </body>
 </html>
